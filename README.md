@@ -5,7 +5,9 @@ Projeto MER (Modelo Entidade Relacionamento) realizado com a ferramenta BRModelo
 O DDL, DML e DQL foram implementados em PostgreSQL.
 
 Informações para contato dos autores do projeto:
+
 **Marcos Antônio Barbosa de Souza**: marcos.souza73@gmail.com // 62 99208-9474
+
 **Luis Eduardo de Souza Pierre**: souzaeduardosouza0@gmail.com // 62 9280-3668
 
 # Hospital_Management
@@ -15,5 +17,7 @@ MER project (Entity Relationship Model) carried out with the BRModelos tool, ava
 DDL, DML and DQL were implemented in PostgreSQL.
 
 Contact information for project authors:
+
 **Marcos Antônio Barbosa de Souza**: marcos.souza73@gmail.com // +55 62 99208-9474
+
 **Luis Eduardo de Souza Pierre**: souzaeduardosouza0@gmail.com // +55 62 99280-3668
