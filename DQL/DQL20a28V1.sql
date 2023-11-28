@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Tuesday, 28 November 2023 13:45:13
+-- * Last Modified: Tuesday, 28 November 2023 14:02:34
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -44,6 +44,21 @@ where (
         and c1.codigo_especialidade = e1.codigo_especialidade
         and c1.data_hora = e1.data_consulta
         and t1.codigo = e1.codigo_tipo_exame
+    )
+group by t1.codigo
+order by t1.descricao;
+-- @block Bookmarked query
+-- @group Sistema Hospitalar
+-- @name pergunta 20 v3
+select t1.codigo as codigo_exame,
+    t1.descricao as descricao_exame,
+    count(*) as total_exames_por_tipo
+from internacoes as i1,
+    exame_internacao as e2,
+    tipo_exame as t1
+where (
+        i1.codigo = e2.codigo_internacao
+        and t1.codigo = e2.codigo_tipo_exame
     )
 group by t1.codigo
 order by t1.descricao;
