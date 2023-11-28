@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Tuesday, 28 November 2023 18:01:00
+-- * Last Modified: Tuesday, 28 November 2023 18:39:47
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -112,18 +112,10 @@ total_exames_internacao as (
     group by t1.codigo
     order by t1.descricao
 )
-select t9.codigo_exame,
-    t9.descricao_exame,
-    sum(total_exames_por_tipo),
-    total_exames_por_tipo
-from (
-        select *
-        from total_exames_consulta
-        union
-        select *
-        from total_exames_internacao
-    ) as t9
-group by t9.codigo_exame,
-    t9.descricao_exame,
-    t9.total_exames_por_tipo
-order by t9.descricao_exame;
+select tc.codigo_exame,
+    tc.descricao_exame,
+    (
+        tc.total_exames_por_tipo + ti.total_exames_por_tipo
+    ) as total_exames_por_tipo
+from total_exames_consulta as tc
+    join total_exames_internacao as ti on ti.codigo_exame = tc.codigo_exame;
