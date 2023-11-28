@@ -6,7 +6,7 @@ O DDL, DML e DQL foram implementados em PostgreSQL.
 
 Informações para contato dos autores do projeto:
 
-**Marcos Antônio Barbosa de Souza**: marcos.souza73@gmail.com // 62 99208-9474
+**Marcos Antônio Barbosa de Souza**: desouza.marcos@outlook.com.br // 62 99208-9474
 
 **Luis Eduardo de Souza Pierre**: souzaeduardosouza0@gmail.com // 62 9280-3668
 
@@ -18,6 +18,6 @@ DDL, DML and DQL were implemented in PostgreSQL.
 
 Contact information for project authors:
 
-**Marcos Antônio Barbosa de Souza**: marcos.souza73@gmail.com // +55 62 99208-9474
+**Marcos Antônio Barbosa de Souza**: desouza.marcos@outlook.com.br // +55 62 99208-9474
 
 **Luis Eduardo de Souza Pierre**: souzaeduardosouza0@gmail.com // +55 62 99280-3668
