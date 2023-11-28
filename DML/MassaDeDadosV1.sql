@@ -6,7 +6,7 @@
 -- * File Created: Tuesday, 28 November 2023 10:23:55
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Tuesday, 28 November 2023 10:28:39
+-- * Last Modified: Tuesday, 28 November 2023 20:26:53
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -698,6 +698,18 @@ VALUES (
     10,
     10,
     '2024-08-07 19:30:00'
+  ),
+  (
+    90,
+    '2024-08-07 19:30:00',
+    195.00,
+    'Elevado',
+    5,
+    10,
+    10,
+    10,
+    10,
+    '2024-08-07 19:30:00'
   );
 -- Inserção de exames de internação na tabela ' exame_internacao '
 INSERT INTO exame_internacao (
@@ -782,6 +794,14 @@ VALUES (
   ),
   (
     10,
+    ' 2023-10-07 21:00:00 ',
+    190.00,
+    ' Elevado ',
+    5,
+    10
+  ),
+  (
+    90,
     ' 2023-10-07 21:00:00 ',
     190.00,
     ' Elevado ',
