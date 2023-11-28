@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Tuesday, 28 November 2023 18:39:47
+-- * Last Modified: Tuesday, 28 November 2023 19:00:50
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -112,10 +112,15 @@ total_exames_internacao as (
     group by t1.codigo
     order by t1.descricao
 )
-select tc.codigo_exame,
-    tc.descricao_exame,
-    (
-        tc.total_exames_por_tipo + ti.total_exames_por_tipo
-    ) as total_exames_por_tipo
-from total_exames_consulta as tc
-    join total_exames_internacao as ti on ti.codigo_exame = tc.codigo_exame;
+select *
+from (
+        select *
+        from total_exames_consulta
+        union all
+        select *
+        from total_exames_internacao
+    ) as sq;
+--
+-- @block Sistema Hospitalar
+-- @group pergunta 21 v1
+-- @description Listar os médicos da especialidade que teve maior número de consulta
