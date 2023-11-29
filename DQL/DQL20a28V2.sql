@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Tuesday, 28 November 2023 20:48:32
+-- * Last Modified: Tuesday, 28 November 2023 20:58:59
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -154,3 +154,17 @@ group by c1.codigo_medico,
     e2.descricao,
     t1.codigo
 order by total_exames_por_especialidade;
+-- @block Sistema Hospitalar
+-- @group pergunta 22 v1
+-- @description Fazer uma consulta com a estatística de médicos por especialidade, ou seja a quantidade de médicos por especialidade.
+select e2.codigo as codigo_especialidade,
+    e2.descricao as descricao_especialidade,
+    count(*) as total_medicos_por_especialidade
+from especialista as e1,
+    medicos as m1,
+    especialidades as e2
+where (
+        e1.codigo_medico = m1.codigo
+        and e1.codigo_especialidade = e2.codigo
+    )
+group by e2.codigo;
