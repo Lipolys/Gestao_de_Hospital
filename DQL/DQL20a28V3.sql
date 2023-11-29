@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Wednesday, 29 November 2023 17:08:26
+-- * Last Modified: Wednesday, 29 November 2023 18:21:05
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -240,7 +240,7 @@ where (
     );
 --
 -- @block Sistema Hospitalar
--- @group pergunta 24 v2 quase lá...
+-- @group pergunta 24 v3 final
 -- @description Listar os pacientes que já realizaram consultas, exames por consulta e por internação, internação e receberam medicamento em internação.
 with pacientes_consulta as (
     select m1.codigo as codigo_paciente,
@@ -411,6 +411,28 @@ where total_exames < (
     );
 --
 -- @block Sistema Hospitalar
--- @group pergunta 27 v1
+-- @group pergunta 27 v2 final
 -- @description Faça vocês do grupo uma pergunta que necessite utilizar funções agregadas e subconsulta para obter a resposta.
--- @notes Pergunta: Listar os médicos que mais solicitaram exames.
+-- @notes Pergunta: Consultar o faturamento total em exames de tipo 'hemograma' e o maior valor pago para realizar este exame.
+select e3.codigo as codigo_exame,
+    e3.descricao as descricao_exame,
+    sum(e3.valor) as total_faturamento,
+    max(e3.valor) as maior_valor_pago
+from (
+        select e1.codigo as codigo,
+            t1.descricao as descricao,
+            e1.valor as valor
+        from exame_consulta as e1,
+            tipo_exame as t1
+        where t1.codigo = e1.codigo_tipo_exame
+        union all
+        select e2.codigo as codigo,
+            t2.descricao as descricao,
+            e2.valor as valor
+        from exame_internacao as e2,
+            tipo_exame as t2
+        where t2.codigo = e2.codigo_tipo_exame
+    ) as e3
+where e3.codigo = 1 -- 'Hemograma'
+group by e3.codigo,
+    e3.descricao;
