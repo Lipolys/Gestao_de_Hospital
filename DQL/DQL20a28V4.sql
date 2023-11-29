@@ -6,13 +6,13 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Wednesday, 29 November 2023 20:24:03
+-- * Last Modified: Wednesday, 29 November 2023 20:26:29
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
 -- * -----
 -- * Description:
--- * ············ Questões 20 a 28
+-- * ············ Questões 20 a 28 (minha parte) ············
 -- * *****
 -- #####
 --
