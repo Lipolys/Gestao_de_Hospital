@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Wednesday, 29 November 2023 16:22:54
+-- * Last Modified: Wednesday, 29 November 2023 17:08:26
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -240,7 +240,7 @@ where (
     );
 --
 -- @block Sistema Hospitalar
--- @group pergunta 24 v1 final
+-- @group pergunta 24 v2 quase lá...
 -- @description Listar os pacientes que já realizaram consultas, exames por consulta e por internação, internação e receberam medicamento em internação.
 with pacientes_consulta as (
     select m1.codigo as codigo_paciente,
@@ -292,21 +292,34 @@ pacientes_exames_totais as (
         ) as sq
     group by codigo_paciente,
         nome_paciente
+),
+pacientes_receita_internacao as (
+    select p1.codigo as codigo_paciente,
+        p1.nome as nome_paciente,
+        coalesce(count(r1.data_hora), 0) as total_medicacoes_internacao
+    from pacientes as p1
+        inner join internacoes as i1 on i1.codigo_paciente = p1.codigo
+        left join receita_internacao as r1 on r1.codigo_internacao = i1.codigo
+    group by p1.codigo
 )
 select m1.codigo as codigo_paciente,
     m1.nome as nome_paciente,
-    mc.total_consultas as total_consultas,
-    mi.total_internacoes as total_internacoes,
-    mt.total_exames as total_exames
+    mc.total_consultas,
+    mi.total_internacoes,
+    mt.total_exames,
+    mr.total_medicacoes_internacao
 from pacientes as m1,
     pacientes_consulta as mc,
     pacientes_internacao as mi,
-    pacientes_exames_totais as mt
+    pacientes_exames_totais as mt,
+    pacientes_receita_internacao as mr
 where (
         m1.codigo = mc.codigo_paciente
         and m1.codigo = mc.codigo_paciente
         and m1.codigo = mi.codigo_paciente
         and m1.codigo = mt.codigo_paciente
+        and m1.codigo = mr.codigo_paciente
+        and mr.total_medicacoes_internacao = 0
     );
 --
 -- @block Sistema Hospitalar
@@ -396,3 +409,8 @@ where total_exames < (
         select avg(total_exames)
         from medicos_exames_totais
     );
+--
+-- @block Sistema Hospitalar
+-- @group pergunta 27 v1
+-- @description Faça vocês do grupo uma pergunta que necessite utilizar funções agregadas e subconsulta para obter a resposta.
+-- @notes Pergunta: Listar os médicos que mais solicitaram exames.
