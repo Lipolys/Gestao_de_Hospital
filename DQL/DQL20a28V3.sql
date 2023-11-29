@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Wednesday, 29 November 2023 15:59:04
+-- * Last Modified: Wednesday, 29 November 2023 16:22:54
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -318,38 +318,81 @@ with medicos_consulta as (
         coalesce(count(c1.data_hora), 0) as total_consultas
     from medicos as m1
         left join consulta as c1 on c1.codigo_medico = m1.codigo
-    group by m1.codigo --
+    group by m1.codigo
 ),
-        medicos_exame_consulta as (
-            select m1.codigo as codigo_medico,
-                m1.nome as nome_medico,
-                coalesce(count(ec1.codigo), 0) as total_exames_em_consultas
-            from medicos as m1
-                left join exame_consulta as ec1 on ec1.codigo_medico = m1.codigo
-            group by m1.codigo --
+medicos_exame_consulta as (
+    select m1.codigo as codigo_medico,
+        m1.nome as nome_medico,
+        coalesce(count(ec1.codigo), 0) as total_exames_em_consultas
+    from medicos as m1
+        left join exame_consulta as ec1 on ec1.codigo_medico = m1.codigo
+    group by m1.codigo
 ),
-                medicos_exame_internacao as (
-                    select m1.codigo as codigo_medico,
-                        m1.nome as nome_medico,
-                        coalesce(count(ei1.codigo), 0) as total_exames_em_internacoes
-                    from medicos as m1
-                        left join internacoes as i1 on i1.codigo_medico = m1.codigo
-                        left join exame_internacao as ei1 on ei1.codigo = i1.codigo
-                    group by m1.codigo --
+medicos_exame_internacao as (
+    select m1.codigo as codigo_medico,
+        m1.nome as nome_medico,
+        coalesce(count(ei1.codigo), 0) as total_exames_em_internacoes
+    from medicos as m1
+        left join internacoes as i1 on i1.codigo_medico = m1.codigo
+        left join exame_internacao as ei1 on ei1.codigo = i1.codigo
+    group by m1.codigo
 )
-                    select m1.codigo as codigo_medico,
-                        m1.nome as nome_medico,
-                        mc.total_consultas,
-                        mec.total_exames_em_consultas,
-                        mei.total_exames_em_internacoes
-                    from medicos as m1,
-                        medicos_consulta as mc,
-                        medicos_exame_consulta as mec,
-                        medicos_exame_internacao as mei
-                    where (
-                            m1.codigo = mc.codigo_medico
-                            and m1.codigo = mec.codigo_medico
-                            and m1.codigo = mei.codigo_medico
-                            and mec.total_exames_em_consultas > 0
-                            and mei.total_exames_em_internacoes = 0
-                        );
+select m1.codigo as codigo_medico,
+    m1.nome as nome_medico,
+    mc.total_consultas,
+    mec.total_exames_em_consultas,
+    mei.total_exames_em_internacoes
+from medicos as m1,
+    medicos_consulta as mc,
+    medicos_exame_consulta as mec,
+    medicos_exame_internacao as mei
+where (
+        m1.codigo = mc.codigo_medico
+        and m1.codigo = mec.codigo_medico
+        and m1.codigo = mei.codigo_medico
+        and mec.total_exames_em_consultas > 0
+        and mei.total_exames_em_internacoes = 0
+    );
+--
+-- @block Sistema Hospitalar
+-- @group pergunta 26 v3 Final
+-- @description Listar os médicos que menos solicitaram exames.
+with medico_exame_consulta as (
+    select m1.codigo as codigo_medico,
+        m1.nome as nome_medico,
+        coalesce(count(ec1.codigo), 0) as total_exames_consultas
+    from medicos as m1
+        left join exame_consulta as ec1 on ec1.codigo_medico = m1.codigo
+    group by m1.codigo
+),
+medico_exame_internacao as (
+    select m1.codigo as codigo_medico,
+        m1.nome as nome_medico,
+        coalesce(count(ei1.codigo), 0) as total_exames_internacoes
+    from medicos as m1
+        left join internacoes as i1 on i1.codigo_medico = m1.codigo
+        left join exame_internacao as ei1 on ei1.codigo = i1.codigo
+    group by m1.codigo
+),
+medicos_exames_totais as (
+    select codigo_medico,
+        nome_medico,
+        sum(total_exames_consultas) as total_exames
+    from (
+            select *
+            from medico_exame_consulta
+            union all
+            select *
+            from medico_exame_internacao
+        ) as sq
+    group by codigo_medico,
+        nome_medico
+)
+select codigo_medico,
+    nome_medico,
+    total_exames
+from medicos_exames_totais
+where total_exames < (
+        select avg(total_exames)
+        from medicos_exames_totais
+    );
