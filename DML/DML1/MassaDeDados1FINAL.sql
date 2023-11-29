@@ -50,12 +50,12 @@ VALUES (1, 'Dr. Silva'),
   (2, 'Dra. Oliveira'),
   (3, 'Dr. Santos'),
   (4, 'Dra. Pereira'),
-  (5, 'Dr. Oliveira'),
+  (5, 'Dr. Tiago'),
   (6, 'Dra. Souza'),
-  (7, 'Dr. Silva'),
-  (8, 'Dra. Santos'),
-  (9, 'Dr. Pereira'),
-  (10, 'Dra. Oliveira');
+  (7, 'Dr. Almeida'),
+  (8, 'Dra. Nogueira'),
+  (9, 'Dr. Videira'),
+  (10, 'Dra. Marcia');
 -- Inserção de especialidades na tabela 'especialidades'
 INSERT INTO especialidades (Codigo, Descricao)
 VALUES (1, 'Cardiologia'),
