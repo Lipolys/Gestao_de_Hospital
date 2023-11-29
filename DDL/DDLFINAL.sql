@@ -9,6 +9,7 @@ CREATE TABLE pacientes(
   Codigo INT NOT NULL,
   CPF BIGINT NOT NULL,
   Nome VARCHAR(45) NOT NULL,
+  Sexo CHAR(1) NOT NULL,
   Data_de_nascimento DATE NOT NULL,
   Telefone BIGINT NOT NULL,
   Logradouro VARCHAR(45) NOT NULL,
