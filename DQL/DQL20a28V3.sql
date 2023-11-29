@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Wednesday, 29 November 2023 11:55:21
+-- * Last Modified: Wednesday, 29 November 2023 15:00:09
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -310,49 +310,65 @@ where (
     );
 --
 -- @block Sistema Hospitalar
--- @group pergunta 25 v1
+-- @group pergunta 25 v2
 -- @description Listar os médicos que já realizaram consultas, solicitaram exames em consultas, e nunca solicitaram exames em internação
-with medicos_consulta as (
-    select m1.codigo as codigo_medico,
-        count(*) as total_consultas
-    from consulta as c1,
-        medicos as m1
-    where c1.codigo_medico = m1.codigo
-    group by m1.codigo
-),
-medicos_exame_consulta as (
-    select m1.codigo as codigo_medico,
-        m1.nome as nome_medico,
-        count(*) as total_exames_consulta
-    from exame_consulta as e1,
-        medicos as m1
-    where e1.codigo_medico = m1.codigo
-    group by m1.codigo
-),
-medicos_exame_internacao as (
-    select m1.codigo as codigo_medico,
-        m1.nome as nome_medico,
-        count(*) as total_exames_internacao
-    from exame_internacao as e2,
-        internacoes as i1,
-        medicos as m1
-    where i1.codigo = e2.codigo_internacao
-        and i1.codigo_medico = m1.codigo
-    group by m1.codigo
-)
+-- with medicos_consulta as (
+-- select m1.codigo as codigo_medico,
+--     count(*) as total_consultas
+-- from consulta as c1,
+--     medicos as m1
+-- where c1.codigo_medico = m1.codigo
+-- group by m1.codigo
+-- ),
+-- medicos_exame_consulta as (
+-- select m1.codigo as codigo_medico,
+--     m1.nome as nome_medico,
+--     count(*) as total_exames_consulta
+-- from exame_consulta as e1,
+--     medicos as m1
+-- where e1.codigo_medico = m1.codigo
+-- group by m1.codigo
+-- ),
+-- medicos_exame_internacao as (
+-- ------------------------------------
+-- ------------------------------------
+-- i1.codigo_medico in (
+--     select codigo
+--     from medicos
+-- )
+-- ------------------------------------
 select m1.codigo as codigo_medico,
     m1.nome as nome_medico,
-    mc.total_consultas as total_consultas,
-    me.total_exames_consulta as total_exames_consulta,
-    coalesce(mi.total_exames_internacao, 0) as total_exames_internacao
-from medicos as m1,
-    medicos_consulta as mc,
-    medicos_exame_consulta as me,
-    medicos_exame_internacao as mi
-where (
-        m1.codigo = mc.codigo_medico
-        and m1.codigo = mc.codigo_medico
-        and m1.codigo = me.codigo_medico
-        and m1.codigo = mi.codigo_medico -- and mi.total_exames_internacao = 0
-    )
-    and mi.total_exames_internacao = 0;
+    coalesce(count(i1.codigo), 0) as total_internacoes
+from medicos as m1
+    left join internacoes as i1 on i1.codigo_medico = m1.codigo
+group by m1.codigo --
+    -- = m1.codigo -- and exists (
+    --     select *
+    --     from consulta as c1
+    --     where c1.codigo_medico = m1.codigo
+    -- )
+    -- and not exists (
+    --     select *
+    --     from exame_internacao as e1
+    --     where i1.codigo_medico = m1.codigo
+    -- )
+    -- group by m1.codigo --
+    -- ------------------------------------
+    -- )
+    -- select m1.codigo as codigo_medico,
+    --     m1.nome as nome_medico,
+    --     mc.total_consultas as total_consultas,
+    --     me.total_exames_consulta as total_exames_consulta,
+    --     coalesce(mi.total_exames_internacao, 0) as total_exames_internacao
+    -- from medicos as m1,
+    --     medicos_consulta as mc,
+    --     medicos_exame_consulta as me,
+    --     medicos_exame_internacao as mi
+    -- where (
+    --         m1.codigo = mc.codigo_medico
+    --         and m1.codigo = mc.codigo_medico
+    --         and m1.codigo = me.codigo_medico
+    --         and m1.codigo = mi.codigo_medico -- and mi.total_exames_internacao = 0
+    --     )
+    --     and mi.total_exames_internacao = 0;
