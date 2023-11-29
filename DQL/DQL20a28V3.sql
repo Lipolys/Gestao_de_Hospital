@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Wednesday, 29 November 2023 18:21:05
+-- * Last Modified: Wednesday, 29 November 2023 18:47:45
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -411,7 +411,7 @@ where total_exames < (
     );
 --
 -- @block Sistema Hospitalar
--- @group pergunta 27 v2 final
+-- @group pergunta 27 v3 final
 -- @description Faça vocês do grupo uma pergunta que necessite utilizar funções agregadas e subconsulta para obter a resposta.
 -- @notes Pergunta: Consultar o faturamento total em exames de tipo 'hemograma' e o maior valor pago para realizar este exame.
 select e3.codigo as codigo_exame,
@@ -419,20 +419,21 @@ select e3.codigo as codigo_exame,
     sum(e3.valor) as total_faturamento,
     max(e3.valor) as maior_valor_pago
 from (
-        select e1.codigo as codigo,
+        select t1.codigo as codigo,
             t1.descricao as descricao,
             e1.valor as valor
         from exame_consulta as e1,
             tipo_exame as t1
         where t1.codigo = e1.codigo_tipo_exame
         union all
-        select e2.codigo as codigo,
+        select t2.codigo as codigo,
             t2.descricao as descricao,
             e2.valor as valor
         from exame_internacao as e2,
             tipo_exame as t2
         where t2.codigo = e2.codigo_tipo_exame
-    ) as e3
+    ) as e3 --
 where e3.codigo = 1 -- 'Hemograma'
 group by e3.codigo,
-    e3.descricao;
+    e3.descricao
+order by e3.descricao;
