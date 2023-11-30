@@ -21,17 +21,17 @@
 -- @name nome do script sql
 -- @description descrição do script sql
 -- Inserção de pacientes na tabela 'pacientes'
-INSERT INTO pacientes (Codigo,CPF,Nome,Data_de_nascimento,Telefone,Logradouro,Endereço,Complemento)
-VALUES (1,12345678901,'João Silva','1990-01-15',1122334455,'Rua A','Bairro A','Apto 101'),
-       (2,98765432109,'Maria Oliveira','1985-05-20',9988776655,'Rua B','Bairro B','Casa 202'),
-       (3,34567890123,'Carlos Santos','1978-11-03',5544332211,'Rua C','Bairro C','Sala 303'),
-       (4,56789012345,'Ana Pereira','1995-08-12',6677889900,'Rua D','Bairro D','Apto 404'),
-       (5,87654321098,'Pedro Oliveira','1980-04-25',1122334455,'Rua E','Bairro E','Casa 505'),
-       (6,23456789012,'Marta Souza','1992-07-18',9988776655,'Rua F','Bairro F','Apto 606'),
-       (7,45678901234,'Luiz Silva','1987-02-09',5544332211,'Rua G','Bairro G','Casa 707'),
-       (8,67890123456,'Juliana Santos','1983-09-30',6677889900,'Rua H','Bairro H','Sala 808'),
-       (9,78901234567,'Ricardo Pereira','1975-12-22',1122334455,'Rua I','Bairro I','Apto 909'),
-       (10,12345098765,'Fernanda Oliveira','1988-06-07',9988776655,'Rua J','Bairro J','Casa 1010');
+INSERT INTO pacientes (Codigo,CPF,Nome,Sexo,Data_de_nascimento,Telefone,Logradouro,Endereço,Complemento)
+VALUES (1,12345678901,'M','João Silva','1990-01-15',1122334455,'Rua A','Bairro A','Apto 101'),
+       (2,98765432109,'F','Maria Oliveira','1985-05-20',9988776655,'Rua B','Bairro B','Casa 202'),
+       (3,34567890123,'M','Carlos Santos','1978-11-03',5544332211,'Rua C','Bairro C','Sala 303'),
+       (4,56789012345,'F','Ana Pereira','1995-08-12',6677889900,'Rua D','Bairro D','Apto 404'),
+       (5,87654321098,'M','Pedro Oliveira','1980-04-25',1122334455,'Rua E','Bairro E','Casa 505'),
+       (6,23456789012,'F','Marta Souza','1992-07-18',9988776655,'Rua F','Bairro F','Apto 606'),
+       (7,45678901234,'M','Luiz Silva','1987-02-09',5544332211,'Rua G','Bairro G','Casa 707'),
+       (8,67890123456,'F','Juliana Santos','1983-09-30',6677889900,'Rua H','Bairro H','Sala 808'),
+       (9,78901234567,'M','Ricardo Pereira','1975-12-22',1122334455,'Rua I','Bairro I','Apto 909'),
+       (10,12345098765,'F','Fernanda Oliveira','1988-06-07',9988776655,'Rua J','Bairro J','Casa 1010');
 -- Inserção de convênios na tabela 'convenios'
 INSERT INTO convenios (Codigo, Descricao)
 VALUES (1, 'Plano de Saúde A'),
