@@ -1,16 +1,16 @@
 -- Inserção de pacientes na tabela 'pacientes'
-INSERT INTO pacientes (Codigo, CPF, Nome, Data_de_nascimento, Telefone, Logradouro, Endereço, Complemento)
+INSERT INTO pacientes (Codigo, CPF, Nome, Sexo , Data_de_nascimento, Telefone, Logradouro, Endereço, Complemento)
 VALUES
-  (1, 12345678901, 'Maria Silva', '1990-03-12', 987654321, 'Rua Flores', 'Bairro Alegre', 'Apto 301'),
-  (2, 23456789012, 'João Oliveira', '1985-08-25', 987123456, 'Av. Principal', 'Centro', 'Sala 102'),
-  (3, 34567890123, 'Carlos Santos', '1978-05-18', 789012345, 'Rua das Árvores', 'Jardim Feliz', 'Casa 15'),
-  (4, 45678901234, 'Amanda Souza', '1995-11-30', 876543210, 'Alameda dos Lagos', 'Condomínio Sereno', 'Lote 5'),
-  (5, 56789012345, 'Rodrigo Lima', '1980-02-09', 765432109, 'Travessa da Paz', 'Vila Harmonia', 'Bloco B'),
-  (6, 67890123456, 'Fernanda Costa', '1992-07-22', 654321098, 'Rua das Montanhas', 'Bairro Tranquilo', 'Casa 7'),
-  (7, 78901234567, 'Paulo Mendes', '1987-04-05', 543210987, 'Avenida do Sol', 'Cidade Radiante', 'Apto 505'),
-  (8, 89012345678, 'Laura Oliveira', '1983-09-15', 432109876, 'Alameda das Flores', 'Jardim Encantado', 'Casa 12'),
-  (9, 90123456789, 'Lucas Pereira', '1998-01-28', 321098765, 'Rua do Bosque', 'Parque Verde', 'Apto 201'),
-  (10, 12345678909, 'Bianca Martins', '1989-06-10', 210987654, 'Praça Central', 'Centro Histórico', 'Loja 3');
+  (1, 12345678901,'F', 'Maria Silva', '1990-03-12', 987654321, 'Rua Flores', 'Bairro Alegre', 'Apto 301'),
+  (2, 23456789012,'M' ,'João Oliveira', '1985-08-25', 987123456, 'Av. Principal', 'Centro', 'Sala 102'),
+  (3, 34567890123,'M' ,'Carlos Santos', '1978-05-18', 789012345, 'Rua das Árvores', 'Jardim Feliz', 'Casa 15'),
+  (4, 45678901234,'F' ,'Amanda Souza', '1995-11-30', 876543210, 'Alameda dos Lagos', 'Condomínio Sereno', 'Lote 5'),
+  (5, 56789012345,'M' ,'Rodrigo Lima', '1980-02-09', 765432109, 'Travessa da Paz', 'Vila Harmonia', 'Bloco B'),
+  (6, 67890123456,'F' ,'Fernanda Costa', '1992-07-22', 654321098, 'Rua das Montanhas', 'Bairro Tranquilo', 'Casa 7'),
+  (7, 78901234567,'M' ,'Paulo Mendes', '1987-04-05', 543210987, 'Avenida do Sol', 'Cidade Radiante', 'Apto 505'),
+  (8, 89012345678,'F' ,'Laura Oliveira', '1983-09-15', 432109876, 'Alameda das Flores', 'Jardim Encantado', 'Casa 12'),
+  (9, 90123456789,'M' ,'Lucas Pereira', '1998-01-28', 321098765, 'Rua do Bosque', 'Parque Verde', 'Apto 201'),
+  (10, 12345678909,'F' ,'Bianca Martins', '1989-06-10', 210987654, 'Praça Central', 'Centro Histórico', 'Loja 3');
 
 -- Inserção de convênios na tabela 'convenios'
 INSERT INTO convenios (Codigo, Descricao)
