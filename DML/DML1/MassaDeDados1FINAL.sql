@@ -6,8 +6,8 @@
 INSERT INTO pacientes (
     Codigo,
     CPF,
-    Nome,
     Sexo,
+    Nome,
     Data_de_nascimento,
     Telefone,
     Logradouro,
