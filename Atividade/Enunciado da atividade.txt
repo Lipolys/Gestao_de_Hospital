@@ -62,7 +62,7 @@ Perguntas:
 
 (minhas respostas)
 
-20.Fazer uma consulta com a estatística de exames solicitados, ou seja a quantidade de solicitações por exames cadastrados.(lembrando que exames podem ser solicitados em consultas ou em prontuários de internação). [ok]
+20.Fazer uma consulta com a estatística de exames solicitados, ou seja a quantidade de solicitações por exames cadastrados.(lembrando que exames podem ser solicitados em consultas ou em prontuários de internação).
 
 21.Listar os médicos da especialidade que teve maior número de consulta
 
