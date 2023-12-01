@@ -6,7 +6,7 @@
 -- * File Created: Monday, 27 November 2023 21:41:07
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Friday, 01 December 2023 16:20:40
+-- * Last Modified: Friday, 01 December 2023 17:37:40
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -266,9 +266,14 @@ where (
         and m1.codigo = mi.codigo_paciente
         and m1.codigo = mt.codigo_paciente
         and m1.codigo = mr.codigo_paciente
-        and mr.total_medicacoes_internacao = 0
+        and mr.total_medicacoes_internacao > 0
     );
 --
+-- @block Sistema Hospitalar
+-- @group pre-pergunta 25
+-- @description Preparar para base atender ao critério de ter uma tupla como resposta
+delete from public.exame_internacao
+where codigo = 1;
 -- @block Sistema Hospitalar
 -- @group pergunta 25 v5 final
 -- @description Listar os médicos que já realizaram consultas, solicitaram exames em consultas, e nunca solicitaram exames em internação

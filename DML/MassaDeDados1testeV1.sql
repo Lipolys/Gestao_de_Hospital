@@ -6,7 +6,7 @@
 -- * File Created: Tuesday, 28 November 2023 10:23:55
 -- * Author: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
--- * Last Modified: Tuesday, 28 November 2023 20:29:48
+-- * Last Modified: Friday, 01 December 2023 17:29:17
 -- * Modified By: Marcos Antônio Barbosa de Souza (desouza.marcos@uol.com.br)
 -- * -----
 -- * Copyright (c) 2023 All rights reserved, Marcos Antônio Barbosa de Souza
@@ -16,6 +16,14 @@
 -- * *****
 -- #####
 --
+-- @block Bookmarked query
+-- @group BD2 Guiliano
+-- @name Registros de teste v1
+-- Deleção de exames de consulta na tabela 'exame_consulta'
+DELETE FROM public.exame_consulta
+WHERE codigo = 90;
+DELETE FROM public.exame_internacao
+WHERE codigo = 90;
 -- @block Bookmarked query
 -- @group BD2 Guiliano
 -- @name Registros de teste v1
@@ -44,6 +52,9 @@ VALUES (
         10,
         '2024-08-07 19:30:00'
     );
+-- @block Bookmarked query
+-- @group BD2 Guiliano
+-- @name Registros de teste v1
 -- Inserção de exames de internação na tabela ' exame_internacao '
 INSERT INTO exame_internacao (
         Codigo,
